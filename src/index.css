@@ -1,14 +1,26 @@
 @import "tailwindcss";
 
-body {
+html,
+body,
+#root {
   margin: 0;
   padding: 0;
+  min-height: 100%;
+  width: 100%;
   font-family: sans-serif;
   background: #050816;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 @keyframes fadeIn {
-
   from {
     opacity: 0;
     transform: translateY(30px) scale(0.97);
@@ -18,7 +30,6 @@ body {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-
 }
 
 .animate-fade {

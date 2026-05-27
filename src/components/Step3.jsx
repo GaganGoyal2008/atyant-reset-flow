@@ -1,13 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 
 export default function Step3() {
-
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] =
     useState(false);
@@ -16,11 +13,10 @@ export default function Step3() {
   const confirmPasswordRef = useRef(null);
 
   useEffect(() => {
-    passwordRef.current.focus();
+    passwordRef.current?.focus();
   }, []);
 
   const handleReset = (e) => {
-
     e.preventDefault();
 
     if (!password || !confirmPassword) {
@@ -43,7 +39,6 @@ export default function Step3() {
   };
 
   const togglePassword = () => {
-
     const input = passwordRef.current;
 
     const cursorPosition = input.selectionStart;
@@ -57,7 +52,6 @@ export default function Step3() {
   };
 
   const toggleConfirmPassword = () => {
-
     const input = confirmPasswordRef.current;
 
     const cursorPosition = input.selectionStart;
@@ -71,28 +65,21 @@ export default function Step3() {
   };
 
   return (
-
-    <div>
-
+    <div className="w-full">
       {!success ? (
-
-        <form onSubmit={handleReset}>
-
+        <form onSubmit={handleReset} className="w-full">
           <div className="relative mb-5">
-
             <input
               ref={passwordRef}
               type={showPassword ? "text" : "password"}
               placeholder="New Password"
               value={password}
               onChange={(e) => {
-
                 setPassword(e.target.value);
 
                 if (error) setError("");
               }}
-              className={`w-full h-14 px-5 pr-14 rounded-2xl border bg-white/5 text-white placeholder-gray-400 outline-none transition-all duration-300 backdrop-blur-md
-              ${
+              className={`w-full h-14 px-5 pr-14 rounded-2xl border bg-white/5 text-white placeholder-gray-400 outline-none transition-all duration-300 backdrop-blur-md text-sm sm:text-base ${
                 error
                   ? "border-red-500"
                   : "border-white/10 focus:border-purple-500"
@@ -106,24 +93,20 @@ export default function Step3() {
             >
               {showPassword ? "🙈" : "👁️"}
             </button>
-
           </div>
 
           <div className="relative">
-
             <input
               ref={confirmPasswordRef}
               type={showConfirmPassword ? "text" : "password"}
               placeholder="Confirm New Password"
               value={confirmPassword}
               onChange={(e) => {
-
                 setConfirmPassword(e.target.value);
 
                 if (error) setError("");
               }}
-              className={`w-full h-14 px-5 pr-14 rounded-2xl border bg-white/5 text-white placeholder-gray-400 outline-none transition-all duration-300 backdrop-blur-md
-              ${
+              className={`w-full h-14 px-5 pr-14 rounded-2xl border bg-white/5 text-white placeholder-gray-400 outline-none transition-all duration-300 backdrop-blur-md text-sm sm:text-base ${
                 error
                   ? "border-red-500"
                   : "border-white/10 focus:border-purple-500"
@@ -137,11 +120,10 @@ export default function Step3() {
             >
               {showConfirmPassword ? "🙈" : "👁️"}
             </button>
-
           </div>
 
           {error && (
-            <p className="text-red-400 text-sm text-center mt-4">
+            <p className="text-red-400 text-sm text-center mt-4 px-2">
               {error}
             </p>
           )}
@@ -152,28 +134,18 @@ export default function Step3() {
           >
             Reset Password
           </button>
-
         </form>
-
       ) : (
-
-        <div className="text-center">
-
-          <p className="text-green-400 font-semibold text-lg mb-5">
+        <div className="text-center w-full flex flex-col items-center justify-center">
+          <p className="text-green-400 font-semibold text-lg mb-5 px-2 text-center">
             Password Reset Successful
           </p>
 
-          <button
-            className="w-full h-14 rounded-2xl bg-gradient-to-r from-purple-600 to-blue-500 text-white font-semibold hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-purple-900/30"
-          >
+          <button className="w-full h-14 rounded-2xl bg-gradient-to-r from-purple-600 to-blue-500 text-white font-semibold hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-purple-900/30">
             Go to Login Page
           </button>
-
         </div>
-
       )}
-
     </div>
-
   );
 }
